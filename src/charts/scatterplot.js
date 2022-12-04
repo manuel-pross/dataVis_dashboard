@@ -1,7 +1,7 @@
 import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
-import { getRegression } from "../utils";
+import { getCorrelation } from "../utils";
 
 export const allPokemonNames = [];
 
@@ -38,29 +38,38 @@ const config = {
 };
 
 function getStatRankingColor(statSum) {
-  if (statSum <= 195) return "#FF9600"; //orange #FF9600
-  else if (statSum <= 195 * 2) return "#FFE500";
-  else if (statSum <= 195 * 3) return "#CDF03A";
-  else return "#2CE574";
+  if (statSum <= 251.3) return "#FF9600"; //orange #FF9600
+  else if (statSum <= 251.3 * 2) return "#FFE500";
+  else return "#77ef3b";
 }
 
 function prepareScatterData(data) {
   //   console.log(data);
   const weightBaseStats = [];
+  const weightBaseStatsCorr = [[], []];
 
   data.forEach((el) => {
     weightBaseStats.push({
       x: parseFloat(el.weight_kg),
       y: parseInt(el.total_points),
     });
+    weightBaseStatsCorr[0].push(parseFloat(el.weight_kg));
+    weightBaseStatsCorr[1].push(parseInt(el.total_points));
   });
 
   data.forEach((el) => {
     allPokemonNames.push(el.name);
   });
 
-  const result = getRegression(weightBaseStats);
-  //   console.log(result);
+  let correlation = getCorrelation(weightBaseStatsCorr);
+  let cachedCorr = correlation;
+  console.log(correlation);
+  const corrArray = [];
+
+  for (let i = 0; i < weightBaseStats.length; i++) {
+    corrArray.push({ x: i, y: cachedCorr.toFixed(2) });
+    cachedCorr += correlation;
+  }
 
   //   arr = arr.map(function (item, i) {
   //     return { x: item, y: arr[i - 1] };
@@ -83,20 +92,24 @@ function prepareScatterData(data) {
   config.data = {
     labels: allPokemonNames,
     datasets: [
-      //   {
-      //     type: "line",
-      //     label: "Data",
-      //     data: weightBaseStats,
-      //     fill: false,
-      //     backgroundColor: "rgba(218,83,79, .7)",
-      //     borderColor: "rgba(218,83,79, .7)",
-      //     pointRadius: 0,
-      //   },
+      {
+        type: "line",
+        label: "Korrelation",
+        data: corrArray,
+        fill: false,
+        backgroundColor: "red",
+        borderColor: "red",
+        pointRadius: 0,
+      },
       {
         type: "scatter",
+        label: "Pokémon",
         labels: allPokemonNames,
         data: weightBaseStats,
-        backgroundColor: "rgba(76,78,80, .7)",
+        backgroundColor: function (ctx) {
+          const color = getStatRankingColor(ctx.raw.y);
+          return color;
+        },
         borderColor: "transparent",
       },
     ],
