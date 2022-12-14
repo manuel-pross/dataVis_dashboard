@@ -1,7 +1,7 @@
 import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
-import { getCorrelation } from "../utils";
+import { findLineByLeastSquares, getCorrelation } from "../utils";
 
 export const allPokemonNames = [];
 
@@ -58,7 +58,34 @@ function prepareScatterData(data) {
 
   let correlation = getCorrelation(weightBaseStatsCorr);
 
-  console.log(correlation);
+  // console.log(correlation);
+
+  const valuesX = [];
+  const valuesY = [];
+
+  weightBaseStats.forEach((el) => {
+    valuesX.push(el.x);
+    valuesY.push(el.y);
+  });
+
+  const squares = findLineByLeastSquares(valuesX, valuesY);
+
+  const squareX = squares[0];
+  const squareY = squares[1];
+
+  console.log(squareY[squareX.indexOf(Math.min(...squareX))]);
+  console.log(squareY[squareX.indexOf(Math.max(...squareX))]);
+
+  const endpoints = [
+    {
+      x: Math.min(...squareX),
+      y: squareY[squareX.indexOf(Math.min(...squareX))],
+    },
+    {
+      x: Math.max(...squareX),
+      y: squareY[squareX.indexOf(Math.max(...squareX))],
+    },
+  ];
 
   data.forEach((el) => {
     allPokemonNames.push(el.name);
@@ -67,15 +94,15 @@ function prepareScatterData(data) {
   config.data = {
     labels: allPokemonNames,
     datasets: [
-      // {
-      //   type: "line",
-      //   label: "Korrelation",
-      //   data: corrArray,
-      //   fill: false,
-      //   backgroundColor: "red",
-      //   borderColor: "red",
-      //   pointRadius: 0,
-      // },
+      {
+        type: "line",
+        label: "Korrelation",
+        data: endpoints,
+        fill: false,
+        backgroundColor: "red",
+        borderColor: "red",
+        pointRadius: 0,
+      },
       {
         type: "scatter",
         label: "Pokémon",

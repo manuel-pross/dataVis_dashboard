@@ -5,7 +5,7 @@ export function getCorrelation(data) {
   return parseFloat(corr);
 }
 
-function findLineByLeastSquares(values_x, values_y) {
+export function findLineByLeastSquares(values_x, values_y) {
   var x_sum = 0;
   var y_sum = 0;
   var xy_sum = 0;

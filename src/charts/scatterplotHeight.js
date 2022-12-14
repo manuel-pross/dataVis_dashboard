@@ -58,7 +58,7 @@ function prepareScatterData(data) {
 
   let correlation = getCorrelation(heightBaseStatsCorr);
 
-  console.log(correlation);
+  // console.log(correlation);
 
   config.data = {
     labels: allPokemonNames,
