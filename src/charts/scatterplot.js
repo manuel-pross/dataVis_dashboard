@@ -62,7 +62,7 @@ function prepareScatterData(data) {
   });
 
   let correlation = getCorrelation(weightBaseStatsCorr);
-  let cachedCorr = correlation;
+  let cachedCorr = correlation + 175;
   console.log(correlation);
   const corrArray = [];
 
@@ -70,24 +70,6 @@ function prepareScatterData(data) {
     corrArray.push({ x: i, y: cachedCorr.toFixed(2) });
     cachedCorr += correlation;
   }
-
-  //   arr = arr.map(function (item, i) {
-  //     return { x: item, y: arr[i - 1] };
-  //   });
-
-  //   config.data = {
-  //     labels: allPokemonNames,
-  //     datasets: [
-  //       {
-  //         radius: 7,
-  //         data: weightBaseStats,
-  //         backgroundColor: function (ctx) {
-  //           const color = getStatRankingColor(ctx.raw.y);
-  //           return color;
-  //         },
-  //       },
-  //     ],
-  //   };
 
   config.data = {
     labels: allPokemonNames,
