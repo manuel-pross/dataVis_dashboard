@@ -5,7 +5,7 @@ import { getCorrelation } from "../utils";
 
 export const allPokemonNames = [];
 
-const ctx = document.getElementById("scatterplot");
+const ctx = document.getElementById("scatterplotWeight");
 Chart.register(zoomPlugin);
 
 const config = {
@@ -31,20 +31,19 @@ const config = {
         position: "bottom",
       },
       y: {
-        min: 160,
+        min: 150,
       },
     },
   },
 };
 
-function getStatRankingColor(statSum) {
-  if (statSum <= 251.3) return "#FF9600"; //orange #FF9600
+export function getStatRankingColor(statSum) {
+  if (statSum <= 251.3) return "#FF9600";
   else if (statSum <= 251.3 * 2) return "#FFE500";
   else return "#77ef3b";
 }
 
 function prepareScatterData(data) {
-  //   console.log(data);
   const weightBaseStats = [];
   const weightBaseStatsCorr = [[], []];
 
@@ -57,32 +56,26 @@ function prepareScatterData(data) {
     weightBaseStatsCorr[1].push(parseInt(el.total_points));
   });
 
+  let correlation = getCorrelation(weightBaseStatsCorr);
+
+  console.log(correlation);
+
   data.forEach((el) => {
     allPokemonNames.push(el.name);
   });
 
-  let correlation = getCorrelation(weightBaseStatsCorr);
-  let cachedCorr = correlation + 175;
-  console.log(correlation);
-  const corrArray = [];
-
-  for (let i = 0; i < weightBaseStats.length; i++) {
-    corrArray.push({ x: i, y: cachedCorr.toFixed(2) });
-    cachedCorr += correlation;
-  }
-
   config.data = {
     labels: allPokemonNames,
     datasets: [
-      {
-        type: "line",
-        label: "Korrelation",
-        data: corrArray,
-        fill: false,
-        backgroundColor: "red",
-        borderColor: "red",
-        pointRadius: 0,
-      },
+      // {
+      //   type: "line",
+      //   label: "Korrelation",
+      //   data: corrArray,
+      //   fill: false,
+      //   backgroundColor: "red",
+      //   borderColor: "red",
+      //   pointRadius: 0,
+      // },
       {
         type: "scatter",
         label: "Pokémon",
@@ -98,7 +91,7 @@ function prepareScatterData(data) {
   };
 }
 
-export function createScatterPlot(data) {
+export function createScatterPlotWeight(data) {
   prepareScatterData(data);
   new Chart(ctx, config);
 }

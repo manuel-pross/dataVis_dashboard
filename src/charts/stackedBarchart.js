@@ -84,7 +84,7 @@ export const types = [
   },
   {
     type: "Ice",
-    color: "(150, 217, 214)",
+    color: "(150, 217, 214, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Eis",
