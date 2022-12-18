@@ -27,10 +27,19 @@ const config = {
     },
     scales: {
       x: {
+        title: {
+          display: true,
+          text: "Gewicht in kg",
+        },
         type: "linear",
         position: "bottom",
       },
       y: {
+        title: {
+          display: true,
+          text: "Basiswertsumme",
+        },
+        display: true,
         min: 150,
       },
     },

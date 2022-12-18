@@ -140,9 +140,17 @@ const config = {
     responsive: true,
     scales: {
       x: {
+        title: {
+          display: true,
+          text: "Typen",
+        },
         stacked: true,
       },
       y: {
+        title: {
+          display: true,
+          text: "Anzahl",
+        },
         stacked: true,
       },
     },

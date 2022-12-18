@@ -3,6 +3,7 @@ import { createScatterPlotWeight } from "./src/charts/scatterplotWeight";
 import { getAllPokemon } from "./src/data";
 import "./style.css";
 import { createScatterPlotHeight } from "./src/charts/scatterplotHeight";
+import { createBubbleChart } from "./src/charts/bubbleChart";
 
 const scatterWeight = document.querySelector("#scatterplotWeight");
 const scatterHeight = document.querySelector("#scatterplotHeight");
@@ -17,6 +18,7 @@ async function drawAllCharts() {
   createStackedBarChart(allPokemon);
   createScatterPlotWeight(allPokemon);
   createScatterPlotHeight(allPokemon);
+  createBubbleChart(allPokemon);
 }
 
 drawAllCharts();

@@ -28,10 +28,18 @@ const config = {
     },
     scales: {
       x: {
+        title: {
+          display: true,
+          text: "Hoehe in m",
+        },
         type: "linear",
         position: "bottom",
       },
       y: {
+        title: {
+          display: true,
+          text: "Basiswertsumme",
+        },
         max: 800,
         min: 150,
       },
