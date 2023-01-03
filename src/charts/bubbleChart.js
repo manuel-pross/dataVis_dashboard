@@ -1,72 +1,9 @@
 import { Chart } from "chart.js/auto";
-import { TypesEnum } from "../enums";
-import { types } from "./stackedBarchart";
+import { typesColorAmount, resitencesMap } from "../dataStructures";
 
 const ctx = document.getElementById("bubbleChart");
 
 const typeCombinations = [];
-const resitencesMap = [
-  [
-    TypesEnum.Normal,
-    {
-      simpleResistences: [],
-      completeResistences: [TypesEnum.Ghost],
-      weaknesses: [TypesEnum.Fighting],
-    },
-  ],
-  [
-    TypesEnum.Fire,
-    {
-      simpleResistences: [
-        TypesEnum.Bug,
-        TypesEnum.Steel,
-        TypesEnum.Fire,
-        TypesEnum.Grass,
-        TypesEnum.Ice,
-        TypesEnum.Fairy,
-      ],
-      completeResistences: [],
-      weaknesses: [],
-    },
-  ],
-  [
-    TypesEnum.Fighting,
-    { simpleResistences: [], completeResistences: [], weaknesses: [] },
-  ],
-  ["Water", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  [
-    "Flying",
-    { simpleResistences: [], completeResistences: [], weaknesses: [] },
-  ],
-  ["Grass", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  [
-    "Poison",
-    { simpleResistences: [], completeResistences: [], weaknesses: [] },
-  ],
-  [
-    "Electric",
-    { simpleResistences: [], completeResistences: [], weaknesses: [] },
-  ],
-  [
-    "Ground",
-    { simpleResistences: [], completeResistences: [], weaknesses: [] },
-  ],
-  [
-    "Psychic",
-    { simpleResistences: [], completeResistences: [], weaknesses: [] },
-  ],
-  ["Rock", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  ["Ice", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  ["Bug", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  [
-    "Dragon",
-    { simpleResistences: [], completeResistences: [], weaknesses: [] },
-  ],
-  ["Ghost", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  ["Dark", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  ["Steel", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-  ["Fairy", { simpleResistences: [], completeResistences: [], weaknesses: [] }],
-];
 
 const config = {
   type: "bubble",
@@ -86,7 +23,7 @@ const config = {
 };
 
 function generateCombinations() {
-  types.forEach((type) => {
+  typesColorAmount.forEach((type) => {
     typeCombinations.push({
       name: type.name,
       amountDoubleRes: 0,
@@ -94,7 +31,7 @@ function generateCombinations() {
       amountCompleteRes: 0,
       amountPokemon: 0,
     });
-    types.forEach((type2) => {
+    typesColorAmount.forEach((type2) => {
       if (type.name !== type2.name) {
         const newCombination = `${type.name}/${type2.name}`;
         const newCombinationReverse = newCombination
@@ -118,7 +55,7 @@ function generateCombinations() {
 
   console.log(resitencesMap);
 
-  types.forEach((singleType) => {
+  typesColorAmount.forEach((singleType) => {
     typeCombinations.forEach((typeCombination) => {});
   });
 

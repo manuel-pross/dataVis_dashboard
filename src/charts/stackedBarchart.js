@@ -1,138 +1,9 @@
 import { Chart } from "chart.js/auto";
-import { TypesEnum } from "../enums";
+import { typesColorAmount } from "../dataStructures";
 
 export const allPokemonNames = [];
 
 const ctx = document.getElementById("stackedBarchart");
-
-export const types = [
-  {
-    name: TypesEnum.Normal,
-    color: "(168, 167, 122, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Normal",
-  },
-  {
-    name: TypesEnum.Fire,
-    color: "(238, 129, 48, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Feuer",
-  },
-  {
-    name: TypesEnum.Fighting,
-    color: "(194, 46, 40, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Kampf",
-  },
-  {
-    name: TypesEnum.Water,
-    color: "(99, 144, 240, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Wasser",
-  },
-  {
-    name: TypesEnum.Flying,
-    color: "(169, 143, 243, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Flug",
-  },
-  {
-    name: TypesEnum.Grass,
-    color: "(122, 199, 76, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Pflanze",
-  },
-  {
-    name: TypesEnum.Poison,
-    color: "(163, 62, 161, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Gift",
-  },
-  {
-    name: TypesEnum.Electric,
-    color: "(247, 208, 44, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Elektro",
-  },
-  {
-    name: TypesEnum.Ground,
-    color: "(226, 191, 101, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Boden",
-  },
-  {
-    name: TypesEnum.Psychic,
-    color: "(249, 85, 135, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Psycho",
-  },
-  {
-    name: TypesEnum.Rock,
-    color: "(182, 161, 54, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Gestein",
-  },
-  {
-    name: TypesEnum.Ice,
-    color: "(150, 217, 214, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Eis",
-  },
-  {
-    name: TypesEnum.Bug,
-    color: "(166, 185, 26, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Käfer",
-  },
-  {
-    name: TypesEnum.Dragon,
-    color: "(111, 53, 252, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Drache",
-  },
-  {
-    name: TypesEnum.Ghost,
-    color: "(115, 87, 151, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Geist",
-  },
-  {
-    name: TypesEnum.Dark,
-    color: "(112, 87, 70, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Unlicht",
-  },
-  {
-    name: TypesEnum.Steel,
-    color: "(183, 183, 206, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Stahl",
-  },
-  {
-    name: TypesEnum.Fairy,
-    color: "(214, 133, 173, 1)",
-    amountFirstType: 0,
-    amountSecondType: 0,
-    german_name: "Fee",
-  },
-];
 
 const config = {
   type: "bar",
@@ -159,29 +30,33 @@ const config = {
 };
 
 function getTypeColor(index, opacity) {
-  let color = `rgba${types[index].color}`;
+  let color = `rgba${typesColorAmount[index].color}`;
   return color.substring(0, color.length - 2) + `${opacity})`;
 }
 
 function prepareStackedBarData(data) {
   data.forEach((el) => {
-    const firstType = types.find((labelEl) => el.type_1 === labelEl.name);
+    const firstType = typesColorAmount.find(
+      (labelEl) => el.type_1 === labelEl.name
+    );
     if (firstType) firstType.amountFirstType += 1;
-    const secondType = types.find((labelEl) => el.type_2 === labelEl.name);
+    const secondType = typesColorAmount.find(
+      (labelEl) => el.type_2 === labelEl.name
+    );
     if (secondType) secondType.amountSecondType += 1;
   });
 
   getTypeColor(1, 1);
 
-  const typeNames = types.map((el) => {
+  const typeNames = typesColorAmount.map((el) => {
     return el.german_name;
   });
 
-  const typeCountFirstType = types.map((el) => {
+  const typeCountFirstType = typesColorAmount.map((el) => {
     return el.amountFirstType;
   });
 
-  const typeCountSecondType = types.map((el) => {
+  const typeCountSecondType = typesColorAmount.map((el) => {
     return el.amountSecondType;
   });
 
