@@ -6,126 +6,126 @@ const ctx = document.getElementById("stackedBarchart");
 
 export const types = [
   {
-    type: "Normal",
+    name: "Normal",
     color: "(168, 167, 122, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Normal",
   },
   {
-    type: "Fire",
+    name: "Fire",
     color: "(238, 129, 48, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Feuer",
   },
   {
-    type: "Fighting",
+    name: "Fighting",
     color: "(194, 46, 40, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Kampf",
   },
   {
-    type: "Water",
+    name: "Water",
     color: "(99, 144, 240, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Wasser",
   },
   {
-    type: "Flying",
+    name: "Flying",
     color: "(169, 143, 243, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Flug",
   },
   {
-    type: "Grass",
+    name: "Grass",
     color: "(122, 199, 76, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Pflanze",
   },
   {
-    type: "Poison",
+    name: "Poison",
     color: "(163, 62, 161, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Gift",
   },
   {
-    type: "Electric",
+    name: "Electric",
     color: "(247, 208, 44, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Elektro",
   },
   {
-    type: "Ground",
+    name: "Ground",
     color: "(226, 191, 101, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Boden",
   },
   {
-    type: "Psychic",
+    name: "Psychic",
     color: "(249, 85, 135, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Psycho",
   },
   {
-    type: "Rock",
+    name: "Rock",
     color: "(182, 161, 54, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Gestein",
   },
   {
-    type: "Ice",
+    name: "Ice",
     color: "(150, 217, 214, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Eis",
   },
   {
-    type: "Bug",
+    name: "Bug",
     color: "(166, 185, 26, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Käfer",
   },
   {
-    type: "Dragon",
+    name: "Dragon",
     color: "(111, 53, 252, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Drache",
   },
   {
-    type: "Ghost",
+    name: "Ghost",
     color: "(115, 87, 151, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Geist",
   },
   {
-    type: "Dark",
+    name: "Dark",
     color: "(112, 87, 70, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Unlicht",
   },
   {
-    type: "Steel",
+    name: "Steel",
     color: "(183, 183, 206, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Stahl",
   },
   {
-    type: "Fairy",
+    name: "Fairy",
     color: "(214, 133, 173, 1)",
     amountFirstType: 0,
     amountSecondType: 0,
@@ -164,9 +164,9 @@ function getTypeColor(index, opacity) {
 
 function prepareStackedBarData(data) {
   data.forEach((el) => {
-    const firstType = types.find((labelEl) => el.type_1 === labelEl.type);
+    const firstType = types.find((labelEl) => el.type_1 === labelEl.name);
     if (firstType) firstType.amountFirstType += 1;
-    const secondType = types.find((labelEl) => el.type_2 === labelEl.type);
+    const secondType = types.find((labelEl) => el.type_2 === labelEl.name);
     if (secondType) secondType.amountSecondType += 1;
   });
 

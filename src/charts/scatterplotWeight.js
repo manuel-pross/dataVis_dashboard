@@ -81,24 +81,14 @@ function prepareScatterData(data) {
     valuesX.push(el.x);
   });
 
-  // const squares = findLineByLeastSquares(valuesX, valuesY);
-
-  // const squareX = squares[0];
-  // const squareY = squares[1];
-
-  // console.log(squares);
-  // console.log(correlation);
-
   const linearRegressionF = regressionLinear()
     .x((d) => d.x)
     .y((d) => d.y)
     .domain([0, 1000]);
 
   const result = linearRegressionF(weightBaseStats);
-  console.log(result);
 
   const regression = calculateRegression(valuesX, result.a, result.b);
-  // console.log(regression);
 
   data.forEach((el) => {
     allPokemonNames.push(el.name);

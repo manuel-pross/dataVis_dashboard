@@ -78,12 +78,8 @@ function prepareScatterData(data) {
     .domain([0, 20]);
 
   const result = linearRegressionF(heightBaseStats);
-  console.log(result);
 
   const regression = calculateRegression(valuesX, result.a, result.b);
-  // console.log(regression);
-
-  // console.log(correlation);
 
   config.data = {
     labels: allPokemonNames,
