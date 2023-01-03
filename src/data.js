@@ -17,7 +17,6 @@ export async function getAllPokemon() {
     el.name = el.german_name;
     return el;
   });
-  console.log(allPokemonGerman);
   // console.log(countPokemon(allPokemonGerman, "Steel"));
 
   return allPokemonGerman;

@@ -67,3 +67,13 @@ export function findLineByLeastSquares(values_x, values_y) {
 
   return [result_values_x, result_values_y];
 }
+
+export function calculateRegression(xPoints, a, b) {
+  const points = [];
+
+  for (const i of xPoints) {
+    points.push({ x: i, y: a * i + b });
+  }
+
+  return points;
+}

@@ -1,7 +1,9 @@
 import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
-import { getCorrelation } from "../utils";
+import { regressionLinear } from "d3-regression";
+
+import { calculateRegression } from "../utils";
 import { getStatRankingColor } from "./scatterplotWeight";
 
 export const allPokemonNames = [];
@@ -40,7 +42,7 @@ const config = {
           display: true,
           text: "Basiswertsumme",
         },
-        max: 800,
+        max: 900,
         min: 150,
       },
     },
@@ -64,22 +66,37 @@ function prepareScatterData(data) {
     allPokemonNames.push(el.name);
   });
 
-  let correlation = getCorrelation(heightBaseStatsCorr);
+  const valuesX = [];
+
+  heightBaseStats.forEach((el) => {
+    valuesX.push(el.x);
+  });
+
+  const linearRegressionF = regressionLinear()
+    .x((d) => d.x)
+    .y((d) => d.y)
+    .domain([0, 20]);
+
+  const result = linearRegressionF(heightBaseStats);
+  console.log(result);
+
+  const regression = calculateRegression(valuesX, result.a, result.b);
+  // console.log(regression);
 
   // console.log(correlation);
 
   config.data = {
     labels: allPokemonNames,
     datasets: [
-      //   {
-      //     type: "line",
-      //     label: "Korrelation",
-      //     data: corrArray,
-      //     fill: false,
-      //     backgroundColor: "red",
-      //     borderColor: "red",
-      //     pointRadius: 0,
-      //   },
+      {
+        type: "line",
+        label: "Korrelation",
+        data: regression,
+        fill: false,
+        backgroundColor: "red",
+        borderColor: "red",
+        pointRadius: 0,
+      },
       {
         type: "scatter",
         label: "Pokémon",

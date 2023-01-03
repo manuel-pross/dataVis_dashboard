@@ -1,7 +1,13 @@
 import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
-import { findLineByLeastSquares, getCorrelation } from "../utils";
+import { regressionLinear } from "d3-regression";
+
+import {
+  calculateRegression,
+  findLineByLeastSquares,
+  getCorrelation,
+} from "../utils";
 
 export const allPokemonNames = [];
 
@@ -70,31 +76,29 @@ function prepareScatterData(data) {
   // console.log(correlation);
 
   const valuesX = [];
-  const valuesY = [];
 
   weightBaseStats.forEach((el) => {
     valuesX.push(el.x);
-    valuesY.push(el.y);
   });
 
-  const squares = findLineByLeastSquares(valuesX, valuesY);
+  // const squares = findLineByLeastSquares(valuesX, valuesY);
 
-  const squareX = squares[0];
-  const squareY = squares[1];
+  // const squareX = squares[0];
+  // const squareY = squares[1];
 
-  console.log(squareY[squareX.indexOf(Math.min(...squareX))]);
-  console.log(squareY[squareX.indexOf(Math.max(...squareX))]);
+  // console.log(squares);
+  // console.log(correlation);
 
-  const endpoints = [
-    {
-      x: Math.min(...squareX),
-      y: squareY[squareX.indexOf(Math.min(...squareX))],
-    },
-    {
-      x: Math.max(...squareX),
-      y: squareY[squareX.indexOf(Math.max(...squareX))],
-    },
-  ];
+  const linearRegressionF = regressionLinear()
+    .x((d) => d.x)
+    .y((d) => d.y)
+    .domain([0, 1000]);
+
+  const result = linearRegressionF(weightBaseStats);
+  console.log(result);
+
+  const regression = calculateRegression(valuesX, result.a, result.b);
+  // console.log(regression);
 
   data.forEach((el) => {
     allPokemonNames.push(el.name);
@@ -106,7 +110,7 @@ function prepareScatterData(data) {
       {
         type: "line",
         label: "Korrelation",
-        data: endpoints,
+        data: regression,
         fill: false,
         backgroundColor: "red",
         borderColor: "red",
