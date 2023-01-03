@@ -73,8 +73,6 @@ function prepareScatterData(data) {
 
   let correlation = getCorrelation(weightBaseStatsCorr);
 
-  // console.log(correlation);
-
   const valuesX = [];
 
   weightBaseStats.forEach((el) => {

@@ -1,9 +1,7 @@
 import { Chart } from "chart.js/auto";
-import { typesColorAmount, resitencesMap } from "../dataStructures";
+import { typeCombinations } from "../dataStructures";
 
 const ctx = document.getElementById("bubbleChart");
-
-const typeCombinations = [];
 
 const config = {
   type: "bubble",
@@ -22,50 +20,9 @@ const config = {
   },
 };
 
-function generateCombinations() {
-  typesColorAmount.forEach((type) => {
-    typeCombinations.push({
-      name: type.name,
-      amountDoubleRes: 0,
-      amountQadrupleRes: 0,
-      amountCompleteRes: 0,
-      amountPokemon: 0,
-    });
-    typesColorAmount.forEach((type2) => {
-      if (type.name !== type2.name) {
-        const newCombination = `${type.name}/${type2.name}`;
-        const newCombinationReverse = newCombination
-          .split("/")
-          .reverse()
-          .join("/");
-        const foundReverseCombination = typeCombinations.find(
-          (combi) => combi.name === newCombinationReverse
-        );
-        if (!foundReverseCombination)
-          typeCombinations.push({
-            name: newCombination,
-            amountDoubleRes: 0,
-            amountQadrupleRes: 0,
-            amountCompleteRes: 0,
-            amountPokemon: 0,
-          });
-      }
-    });
-  });
-
-  console.log(resitencesMap);
-
-  typesColorAmount.forEach((singleType) => {
-    typeCombinations.forEach((typeCombination) => {});
-  });
-
-  // console.log(typeCombinations);
-}
-
 function calculateResistences(data) {}
 
 export function prepareBubbleChartdata(data) {
-  generateCombinations();
   calculateResistences(data);
 }
 

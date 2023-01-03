@@ -358,3 +358,41 @@ export const resitencesMap = new Map([
     },
   ],
 ]);
+
+export const typeCombinations = [];
+
+function generateCombinations() {
+  typesColorAmount.forEach((type) => {
+    typeCombinations.push({
+      name: type.name,
+      amountDoubleRes: 0,
+      amountQadrupleRes: 0,
+      amountCompleteRes: 0,
+      amountPokemon: 0,
+    });
+    typesColorAmount.forEach((type2) => {
+      if (type.name !== type2.name) {
+        const newCombination = `${type.name}/${type2.name}`;
+        const newCombinationReverse = newCombination
+          .split("/")
+          .reverse()
+          .join("/");
+        const foundReverseCombination = typeCombinations.find(
+          (combi) => combi.name === newCombinationReverse
+        );
+        if (!foundReverseCombination)
+          typeCombinations.push({
+            name: newCombination,
+            amountDoubleRes: 0,
+            amountQadrupleRes: 0,
+            amountCompleteRes: 0,
+            amountPokemon: 0,
+          });
+      }
+    });
+  });
+}
+
+function calcTypeCombiWeakAndEffect() {}
+
+generateCombinations();
