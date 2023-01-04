@@ -1,9 +1,10 @@
 import { Chart } from "chart.js/auto";
-import { typesColorAmount } from "../data";
+import { fetchedPokemon, typesColorAmount } from "../data";
 
 export const allPokemonNames = [];
 
 const ctx = document.getElementById("stackedBarchart");
+export let publicBarChart = null;
 
 const config = {
   type: "bar",
@@ -34,8 +35,8 @@ function getTypeColor(index, opacity) {
   return color.substring(0, color.length - 2) + `${opacity})`;
 }
 
-function prepareStackedBarData(data) {
-  data.forEach((el) => {
+function prepareStackedBarData() {
+  fetchedPokemon.forEach((el) => {
     const firstType = typesColorAmount.find(
       (labelEl) => el.type_1 === labelEl.name
     );
@@ -67,6 +68,8 @@ function prepareStackedBarData(data) {
         backgroundColor: (ctx) => {
           return getTypeColor(ctx.dataIndex, 1);
         },
+        borderColor: "black",
+        borderWidth: 2,
       },
       {
         label: "Zweittyp",
@@ -74,6 +77,8 @@ function prepareStackedBarData(data) {
         backgroundColor: (ctx) => {
           return getTypeColor(ctx.dataIndex, 0.5);
         },
+        borderColor: "black",
+        borderWidth: 2,
       },
     ],
   };
@@ -81,5 +86,5 @@ function prepareStackedBarData(data) {
 
 export function createStackedBarChart(data) {
   prepareStackedBarData(data);
-  new Chart(ctx, config);
+  publicBarChart = new Chart(ctx, config);
 }

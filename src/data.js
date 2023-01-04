@@ -1,5 +1,7 @@
 import * as d3 from "d3";
 
+export let fetchedPokemon = [];
+
 export async function getAllPokemon() {
   let allPokemon = await d3.csv("./data/pokedex.csv");
 
@@ -18,7 +20,7 @@ export async function getAllPokemon() {
     return el;
   });
 
-  return allPokemonGerman;
+  fetchedPokemon = [...allPokemonGerman];
 }
 
 export const TypesEnum = {
@@ -576,8 +578,8 @@ function getMultiplier(attackingType, defendingTypeCombi) {
   return multiplier;
 }
 
-function countPokeByType(allPokemon) {
-  allPokemon.forEach((pokemon) => {
+function countPokeByType() {
+  fetchedPokemon.forEach((pokemon) => {
     const secondType = pokemon.type_2;
     let combinedType = "";
     if (secondType) {

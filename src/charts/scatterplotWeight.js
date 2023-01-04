@@ -2,12 +2,14 @@ import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
 import { regressionLinear } from "d3-regression";
+import { fetchedPokemon } from "../data";
 
 import {
   calculateRegression,
   findLineByLeastSquares,
   getCorrelation,
 } from "../utils";
+import { publicBarChart } from "./stackedBarchart";
 
 export const allPokemonNames = [];
 
@@ -49,6 +51,21 @@ const config = {
         min: 150,
       },
     },
+    onClick: (event, elements) => {
+      if (elements[0]) {
+        const pokemon = fetchedPokemon[elements[0].index];
+        let type = "";
+
+        if (pokemon.type_2) {
+          type = `${pokemon.type_1}/${pokemon.type_2}`;
+        } else type = pokemon.type_1;
+
+        console.log(type);
+
+        // publicBarChart.data.datasets[0].borderColor = "red";
+        // publicBarChart.update();
+      }
+    },
   },
 };
 
@@ -58,11 +75,11 @@ export function getStatRankingColor(statSum) {
   else return "#77ef3b";
 }
 
-function prepareScatterData(data) {
+function prepareScatterData() {
   const weightBaseStats = [];
   const weightBaseStatsCorr = [[], []];
 
-  data.forEach((el) => {
+  fetchedPokemon.forEach((el) => {
     weightBaseStats.push({
       x: parseFloat(el.weight_kg),
       y: parseInt(el.total_points),
@@ -88,7 +105,7 @@ function prepareScatterData(data) {
 
   const regression = calculateRegression(valuesX, result.a, result.b);
 
-  data.forEach((el) => {
+  fetchedPokemon.forEach((el) => {
     allPokemonNames.push(el.name);
   });
 

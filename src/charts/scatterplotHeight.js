@@ -2,6 +2,7 @@ import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
 import { regressionLinear } from "d3-regression";
+import { fetchedPokemon } from "../data";
 
 import { calculateRegression } from "../utils";
 import { getStatRankingColor } from "./scatterplotWeight";
@@ -49,11 +50,11 @@ const config = {
   },
 };
 
-function prepareScatterData(data) {
+function prepareScatterData() {
   const heightBaseStats = [];
   const heightBaseStatsCorr = [[], []];
 
-  data.forEach((el) => {
+  fetchedPokemon.forEach((el) => {
     heightBaseStats.push({
       x: parseFloat(el.height_m),
       y: parseInt(el.total_points),
@@ -62,7 +63,7 @@ function prepareScatterData(data) {
     heightBaseStatsCorr[1].push(parseInt(el.total_points));
   });
 
-  data.forEach((el) => {
+  fetchedPokemon.forEach((el) => {
     allPokemonNames.push(el.name);
   });
 
