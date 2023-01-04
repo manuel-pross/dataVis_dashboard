@@ -46,6 +46,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Normal,
     color: "(168, 167, 122, 1)",
+    colorRGB: "#a8a77a",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Normal",
@@ -53,6 +54,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Fire,
     color: "(238, 129, 48, 1)",
+    colorRGB: "#ee8130",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Feuer",
@@ -60,6 +62,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Fighting,
     color: "(194, 46, 40, 1)",
+    colorRGB: "#c22e28",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Kampf",
@@ -67,6 +70,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Water,
     color: "(99, 144, 240, 1)",
+    colorRGB: "#6390f0",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Wasser",
@@ -74,6 +78,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Flying,
     color: "(169, 143, 243, 1)",
+    colorRGB: "#a98ff3",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Flug",
@@ -81,6 +86,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Grass,
     color: "(122, 199, 76, 1)",
+    colorRGB: "#7ac74c",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Pflanze",
@@ -88,6 +94,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Poison,
     color: "(163, 62, 161, 1)",
+    colorRGB: "#a33ea1",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Gift",
@@ -95,6 +102,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Electric,
     color: "(247, 208, 44, 1)",
+    colorRGB: "#f7d02c",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Elektro",
@@ -102,6 +110,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Ground,
     color: "(226, 191, 101, 1)",
+    colorRGB: "#e2bf65",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Boden",
@@ -109,6 +118,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Psychic,
     color: "(249, 85, 135, 1)",
+    colorRGB: "#f95587",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Psycho",
@@ -116,6 +126,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Rock,
     color: "(182, 161, 54, 1)",
+    colorRGB: "#b6a136",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Gestein",
@@ -123,6 +134,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Ice,
     color: "(150, 217, 214, 1)",
+    colorRGB: "#96d9d6",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Eis",
@@ -130,6 +142,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Bug,
     color: "(166, 185, 26, 1)",
+    colorRGB: "#a6b91a",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Käfer",
@@ -137,6 +150,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Dragon,
     color: "(111, 53, 252, 1)",
+    colorRGB: "#6f35fc",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Drache",
@@ -144,6 +158,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Ghost,
     color: "(115, 87, 151, 1)",
+    colorRGB: "#735797",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Geist",
@@ -151,6 +166,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Dark,
     color: "(112, 87, 70, 1)",
+    colorRGB: "#705746",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Unlicht",
@@ -158,6 +174,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Steel,
     color: "(183, 183, 206, 1)",
+    colorRGB: "#b7b7ce",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Stahl",
@@ -165,6 +182,7 @@ export const typesColorAmount = [
   {
     name: TypesEnum.Fairy,
     color: "(214, 133, 173, 1)",
+    colorRGB: "#d685ad",
     amountFirstType: 0,
     amountSecondType: 0,
     german_name: "Fee",
@@ -575,7 +593,6 @@ function countPokeByType(allPokemon) {
 
     foundType.amountPokemon += 1;
   });
-  console.log(typeCombinations);
 }
 
 export function setUpData(allPokemon) {

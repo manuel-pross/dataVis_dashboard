@@ -46,8 +46,6 @@ function prepareStackedBarData(data) {
     if (secondType) secondType.amountSecondType += 1;
   });
 
-  getTypeColor(1, 1);
-
   const typeNames = typesColorAmount.map((el) => {
     return el.german_name;
   });

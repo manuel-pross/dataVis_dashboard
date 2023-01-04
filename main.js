@@ -3,14 +3,14 @@ import { getAllPokemon, setUpData } from "./src/data";
 import { createStackedBarChart } from "./src/charts/stackedBarchart";
 import { createScatterPlotWeight } from "./src/charts/scatterplotWeight";
 import { createScatterPlotHeight } from "./src/charts/scatterplotHeight";
-import { createBubbleChart } from "./src/charts/bubbleChart";
 
 import "./style.css";
+import { createBubbleChart } from "./src/charts/bubbleChart";
 
 const scatterWeight = document.querySelector("#scatterplotWeight");
 const scatterHeight = document.querySelector("#scatterplotHeight");
 
-document.querySelector("#toggleScatter").addEventListener("click", (e) => {
+document.querySelector("#toggleScatter").addEventListener("click", () => {
   scatterWeight.classList.toggle("hidden");
   scatterHeight.classList.toggle("hidden");
 });
@@ -25,7 +25,7 @@ function drawAllCharts(allPokemon) {
   createStackedBarChart(allPokemon);
   createScatterPlotWeight(allPokemon);
   createScatterPlotHeight(allPokemon);
-  createBubbleChart(allPokemon);
+  createBubbleChart();
 }
 
 setUpDashboard();
