@@ -1,5 +1,5 @@
 import { Chart } from "chart.js/auto";
-import { typeCombinations } from "../dataStructures";
+import { typeCombinations } from "../data";
 
 const ctx = document.getElementById("bubbleChart");
 

@@ -1,5 +1,5 @@
 import { Chart } from "chart.js/auto";
-import { typesColorAmount } from "../dataStructures";
+import { typesColorAmount } from "../data";
 
 export const allPokemonNames = [];
 
