@@ -503,6 +503,7 @@ function translateMultiplier(multiplier, typeCombi) {
   }
 }
 
+// stolen from https://codegolf.stackexchange.com/questions/55823/its-super-effective
 function getMultiplier(attackingType, defendingTypeCombi) {
   // keys is a list of letters found in the types of attacks/defenses
   const keys = [..."BWSEIRNulkcDPotyeG"];
