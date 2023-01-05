@@ -1,11 +1,94 @@
+body {
+  margin: 0;
+}
+
+.dashboard__container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.dashboard__header {
+  background-color: #ee1515;
+  height: 5vh;
+}
+
+.dashboard__heading {
+  text-align: center;
+  margin: 0;
+  padding: 0.5rem 0rem;
+  color: white;
+}
+
+.dashboard__diagramm-wrapper {
+  display: flex;
+  height: 94vh;
+}
+
+.dashboard__interaction-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 40%;
+}
+
+@media screen and (max-width: 1920px) {
+}
+
+.dashboard__bar-wrapper {
+}
+
+.dashboard__division-line {
+  border: 3px solid black;
+  width: 100%;
+}
+
+.dashboard__scatter-wrapper {
+}
+
+.dashboard__toggle-scatter-btn {
+  background-color: #1fc1ff;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: block;
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 500;
+  width: 100px;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0 auto;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dashboard__toggle-scatter-btn:hover,
+.dashboard__toggle-scatter-btn:focus {
+  background-color: #1da3d3;
+}
+
+.dashboard__polar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+}
+
+.dashboard__polar-chart {
+}
+
 .hidden {
   display: none !important;
-}
-
-body {
-  margin: 0 5rem;
-}
-
-.stacked-barchart {
-  margin-bottom: 3rem;
 }

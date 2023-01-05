@@ -7,14 +7,32 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <div id="my_dataviz"></div>
-    <canvas id="stackedBarchart" class="stacked-barchart"></canvas>
-    <div>
-      <canvas id="scatterplotWeight"></canvas>
-      <canvas id="scatterplotHeight" class="hidden"></canvas>
-      <button id="toggleScatter">toggle</button>
+    <div class="dashboard__container">
+      <div class="dashboard__header">
+        <h1 class="dashboard__heading">Pokemon Dashboard</h1>
+      </div>
+      <div class="dashboard__diagramm-wrapper">
+        <div class="dashboard__interaction-wrapper">
+          <div class="dashboard__bar-wrapper">
+            <canvas
+              id="stackedBarchart"
+              class="dashboard__stacked-barchart"
+            ></canvas>
+          </div>
+          <hr class="dashboard__division-line" />
+          <div class="dashboard__scatter-wrapper">
+            <canvas id="scatterplotWeight"></canvas>
+            <canvas id="scatterplotHeight" class="hidden"></canvas>
+            <button class="dashboard__toggle-scatter-btn" id="toggleScatterBtn">
+              Höhe
+            </button>
+          </div>
+        </div>
+        <div class="dashboard__polar-wrapper">
+          <canvas class="dashboard__polar-chart" id="polar"></canvas>
+        </div>
+      </div>
     </div>
-    <canvas id="bubble"></canvas>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

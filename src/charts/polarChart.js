@@ -1,9 +1,13 @@
 import { Chart } from "chart.js/auto";
 
-import { typeCombinations } from "../data";
-import { typesColorAmount } from "../data";
+import {
+  fontSizeLabel2,
+  fontSizeTitleHeading,
+  typeCombinations,
+  typesColorAmount,
+} from "../data";
 
-const ctx = document.getElementById("bubble");
+const ctx = document.getElementById("polar");
 
 const cache = new Map();
 let width = null;
@@ -53,16 +57,34 @@ function createRadialGradient3(context, c1, c2) {
 const config = {
   type: "polarArea",
   data: null,
+  options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "TypenKombinationen mit mindestens 6 Resistenzen",
+        font: {
+          size: fontSizeTitleHeading,
+        },
+      },
+      legend: {
+        labels: {
+          font: {
+            size: fontSizeLabel2,
+          },
+        },
+      },
+    },
+  },
 };
 
-export function prepareBubbleChartdata() {
+export function preparePolarChartdata() {
   const preparedData = { labels: [], resistences: [] };
 
   typeCombinations.forEach((typeCombi) => {
     if (typeCombi.amountRes > 6 && typeCombi.amountPokemon > 0) {
       preparedData.labels.push(typeCombi.name);
       preparedData.resistences.push(typeCombi.amountRes);
-      prepareBubbleChartdata;
     }
   });
 
@@ -95,7 +117,7 @@ export function prepareBubbleChartdata() {
   };
 }
 
-export function createBubbleChart() {
-  prepareBubbleChartdata();
+export function createPolarChart() {
+  preparePolarChartdata();
   new Chart(ctx, config);
 }

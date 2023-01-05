@@ -2,13 +2,14 @@ import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
 import { regressionLinear } from "d3-regression";
-import { fetchedPokemon, typesColorAmount } from "../data";
-
 import {
-  calculateRegression,
-  findLineByLeastSquares,
-  getCorrelation,
-} from "../utils";
+  fetchedPokemon,
+  fontSizeLabel,
+  fontSizeTitleHeading,
+  typesColorAmount,
+} from "../data";
+
+import { calculateRegression, getCorrelation } from "../utils";
 import { publicBarChart } from "./stackedBarchart";
 
 export const allPokemonNames = [];
@@ -20,7 +21,22 @@ const config = {
   type: "scatter",
   data: null,
   options: {
+    responsive: true,
     plugins: {
+      title: {
+        display: true,
+        text: "Gewicht zu Basiswertsumme",
+        font: {
+          size: fontSizeTitleHeading,
+        },
+      },
+      legend: {
+        labels: {
+          font: {
+            size: fontSizeLabel,
+          },
+        },
+      },
       zoom: {
         zoom: {
           wheel: {
@@ -38,6 +54,9 @@ const config = {
         title: {
           display: true,
           text: "Gewicht in kg",
+          font: {
+            size: fontSizeLabel,
+          },
         },
         type: "linear",
         position: "bottom",
@@ -46,6 +65,9 @@ const config = {
         title: {
           display: true,
           text: "Basiswertsumme",
+          font: {
+            size: fontSizeLabel,
+          },
         },
         display: true,
         min: 150,
@@ -86,7 +108,7 @@ export function highlightBarChart(elements) {
         typeAmount.amountFirstType === e.raw &&
         i === e.index
     );
-    if (foundFirstType) return "red";
+    if (foundFirstType) return "#B33A3A";
     else return "#808080";
   };
 
@@ -98,7 +120,7 @@ export function highlightBarChart(elements) {
           typeAmount.amountSecondType === e.raw &&
           i === e.index
       );
-      if (foundSecondType) return "red";
+      if (foundSecondType) return "#B33A3A";
       else return "#808080";
     };
   }

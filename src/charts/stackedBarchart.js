@@ -1,5 +1,10 @@
 import { Chart } from "chart.js/auto";
-import { fetchedPokemon, typesColorAmount } from "../data";
+import {
+  fetchedPokemon,
+  fontSizeLabel,
+  fontSizeTitleHeading,
+  typesColorAmount,
+} from "../data";
 
 export const allPokemonNames = [];
 
@@ -10,12 +15,31 @@ const config = {
   type: "bar",
   data: null,
   options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "Typenverteilung",
+        font: {
+          size: fontSizeTitleHeading,
+        },
+      },
+      legend: {
+        labels: {
+          font: {
+            size: fontSizeLabel,
+          },
+        },
+      },
+    },
     responsive: true,
     scales: {
       x: {
         title: {
           display: true,
           text: "Typen",
+          font: {
+            size: fontSizeLabel,
+          },
         },
         stacked: true,
       },
@@ -23,6 +47,9 @@ const config = {
         title: {
           display: true,
           text: "Anzahl",
+          font: {
+            size: fontSizeLabel,
+          },
         },
         stacked: true,
       },

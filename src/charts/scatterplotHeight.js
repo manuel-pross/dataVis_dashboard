@@ -2,7 +2,7 @@ import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
 import { regressionLinear } from "d3-regression";
-import { fetchedPokemon } from "../data";
+import { fetchedPokemon, fontSizeLabel } from "../data";
 
 import { calculateRegression } from "../utils";
 import { getStatRankingColor, highlightBarChart } from "./scatterplotWeight";
@@ -17,6 +17,13 @@ const config = {
   data: null,
   options: {
     plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: fontSizeLabel,
+          },
+        },
+      },
       zoom: {
         zoom: {
           wheel: {
@@ -34,6 +41,9 @@ const config = {
         title: {
           display: true,
           text: "Hoehe in m",
+          font: {
+            size: fontSizeLabel,
+          },
         },
         type: "linear",
         position: "bottom",
@@ -42,6 +52,9 @@ const config = {
         title: {
           display: true,
           text: "Basiswertsumme",
+          font: {
+            size: fontSizeLabel,
+          },
         },
         max: 900,
         min: 150,
