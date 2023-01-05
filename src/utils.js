@@ -77,3 +77,65 @@ export function calculateRegression(xPoints, a, b) {
 
   return points;
 }
+
+export function getTranslation(type) {
+  let translation = "";
+  switch (type) {
+    case "Normal":
+      translation = "Normal";
+      break;
+    case "Fire":
+      translation = "Feuer";
+      break;
+    case "Fighting":
+      translation = "Kampf";
+      break;
+    case "Water":
+      translation = "Wasser";
+      break;
+    case "Flying":
+      translation = "Flug";
+      break;
+    case "Grass":
+      translation = "Pflanze";
+      break;
+    case "Poison":
+      translation = "Gift";
+      break;
+    case "Electric":
+      translation = "Elektro";
+      break;
+    case "Ground":
+      translation = "Boden";
+      break;
+    case "Psychic":
+      translation = "Psycho";
+      break;
+    case "Rock":
+      translation = "Gestein";
+      break;
+    case "Ice":
+      translation = "Eis";
+      break;
+    case "Bug":
+      translation = "Käfer";
+      break;
+    case "Dragon":
+      translation = "Drache";
+      break;
+    case "Ghost":
+      translation = "Geist";
+      break;
+    case "Dark":
+      translation = "Unlicht";
+      break;
+    case "Steel":
+      translation = "Stahl";
+      break;
+
+    default:
+      translation = "Fee";
+      break;
+  }
+  return translation;
+}

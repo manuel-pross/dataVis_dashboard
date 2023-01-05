@@ -6,13 +6,14 @@ import { fontSizeLabel2, fontSizeTitleHeading } from "../chartStyles";
 
 import { publicScatterHeight } from "./scatterplotHeight";
 import { publicScatterWeight } from "./scatterplotWeight";
+import { getTranslation } from "../utils";
 
 const ctx = document.getElementById("polar");
 
 const cache = new Map();
 let width = null;
 let height = null;
-const preparedData = { labels: [], resistences: [] };
+const preparedData = { labels: [], labelsGerman: [], resistences: [] };
 
 function createRadialGradient3(context, c1, c2) {
   const chartArea = context.chart.chartArea;
@@ -135,19 +136,36 @@ const config = {
   },
 };
 
+function translateCombi(combi) {
+  const types = combi.split("/");
+  const firstType = types[0];
+  const secondType = types[1];
+
+  const firstTypeTrans = getTranslation(firstType);
+  let secondTypeTrans = "";
+
+  if (secondType) {
+    secondTypeTrans = getTranslation(secondType);
+    return `${firstTypeTrans}/${secondTypeTrans}`;
+  } else {
+    return firstTypeTrans;
+  }
+}
+
 export function preparePolarChartdata() {
   typeCombinations.forEach((typeCombi) => {
     if (typeCombi.amountRes > 6 && typeCombi.amountPokemon > 0) {
       preparedData.labels.push(typeCombi.name);
+      preparedData.labelsGerman.push(translateCombi(typeCombi.name));
       preparedData.resistences.push(typeCombi.amountRes);
     }
   });
 
   config.data = {
-    labels: preparedData.labels,
+    labels: preparedData.labelsGerman,
     datasets: [
       {
-        label: "My First Dataset",
+        label: "Anzahl Resistenzen: ",
         data: preparedData.resistences,
         backgroundColor: function (context) {
           const typeCombi = preparedData.labels[context.index].split("/");
