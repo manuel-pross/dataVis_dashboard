@@ -1,13 +1,10 @@
 import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
-
 import { regressionLinear } from "d3-regression";
-import {
-  fetchedPokemon,
-  fontSizeLabel,
-  fontSizeTitleHeading,
-  typesColorAmount,
-} from "../data";
+
+import { fetchedPokemon, typesColorAmount } from "../data";
+
+import { fontSizeLabel, fontSizeTitleHeading } from "../chartStyles";
 
 import { calculateRegression, getCorrelation } from "../utils";
 import { publicBarChart } from "./stackedBarchart";
@@ -15,6 +12,7 @@ import { publicBarChart } from "./stackedBarchart";
 export const allPokemonNames = [];
 
 const ctx = document.getElementById("scatterplotWeight");
+export let publicScatterWeight = null;
 Chart.register(zoomPlugin);
 
 const config = {
@@ -83,6 +81,14 @@ export function highlightBarChart(elements) {
   let firstType = null;
   let secondType = null;
 
+  if (elements[0]) {
+    const pokemon = fetchedPokemon[elements[0].index];
+    firstType = pokemon.type_1;
+
+    if (pokemon.type_2) {
+      secondType = pokemon.type_2;
+    }
+  }
   publicBarChart.data.datasets[0].borderColor = () => {
     return "#808080";
   };
@@ -92,15 +98,6 @@ export function highlightBarChart(elements) {
 
   publicBarChart.update();
 
-  if (elements[0]) {
-    const pokemon = fetchedPokemon[elements[0].index];
-    firstType = pokemon.type_1;
-
-    if (pokemon.type_2) {
-      secondType = pokemon.type_2;
-    }
-  }
-
   publicBarChart.data.datasets[0].borderColor = (e) => {
     const foundFirstType = typesColorAmount.find(
       (typeAmount, i) =>
@@ -108,7 +105,7 @@ export function highlightBarChart(elements) {
         typeAmount.amountFirstType === e.raw &&
         i === e.index
     );
-    if (foundFirstType) return "#B33A3A";
+    if (foundFirstType) return "black";
     else return "#808080";
   };
 
@@ -120,7 +117,7 @@ export function highlightBarChart(elements) {
           typeAmount.amountSecondType === e.raw &&
           i === e.index
       );
-      if (foundSecondType) return "#B33A3A";
+      if (foundSecondType) return "black";
       else return "#808080";
     };
   }
@@ -175,8 +172,8 @@ function prepareScatterData() {
         label: "Korrelation",
         data: regression,
         fill: false,
-        backgroundColor: "red",
-        borderColor: "red",
+        backgroundColor: "green",
+        borderColor: "green",
         pointRadius: 0,
       },
       {
@@ -184,11 +181,7 @@ function prepareScatterData() {
         label: "Pokémon",
         labels: allPokemonNames,
         data: weightBaseStats,
-        backgroundColor: function (ctx) {
-          const color = getStatRankingColor(ctx.raw.y);
-          return color;
-        },
-        borderColor: "transparent",
+        pointBackgroundColor: Array(allPokemonNames.length).fill("black"),
       },
     ],
   };
@@ -196,5 +189,5 @@ function prepareScatterData() {
 
 export function createScatterPlotWeight(data) {
   prepareScatterData(data);
-  new Chart(ctx, config);
+  publicScatterWeight = new Chart(ctx, config);
 }

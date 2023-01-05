@@ -16,7 +16,7 @@ body {
 }
 
 .dashboard__header-img {
-  height: 80%;
+  height: 85%;
   max-width: 100%;
   display: block;
   margin: auto;
@@ -53,6 +53,7 @@ body {
 }
 
 .dashboard__scatter-wrapper {
+  height: 95%;
 }
 
 .dashboard__toggle-scatter-btn {

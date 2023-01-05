@@ -1,17 +1,18 @@
 import { Chart } from "chart.js/auto";
 
-import {
-  fontSizeLabel2,
-  fontSizeTitleHeading,
-  typeCombinations,
-  typesColorAmount,
-} from "../data";
+import { fetchedPokemon, typeCombinations, typesColorAmount } from "../data";
+
+import { fontSizeLabel2, fontSizeTitleHeading } from "../chartStyles";
+
+import { publicScatterHeight } from "./scatterplotHeight";
+import { publicScatterWeight } from "./scatterplotWeight";
 
 const ctx = document.getElementById("polar");
 
 const cache = new Map();
 let width = null;
 let height = null;
+const preparedData = { labels: [], resistences: [] };
 
 function createRadialGradient3(context, c1, c2) {
   const chartArea = context.chart.chartArea;
@@ -75,12 +76,66 @@ const config = {
         },
       },
     },
+    onClick: (event, elements) => {
+      publicScatterHeight.data.datasets[1].pointBackgroundColor.forEach(
+        (colorPoint, i) => {
+          publicScatterHeight.data.datasets[1].pointBackgroundColor[i] =
+            "black";
+        }
+      );
+      publicScatterWeight.data.datasets[1].pointBackgroundColor.forEach(
+        (colorPoint, i) => {
+          publicScatterWeight.data.datasets[1].pointBackgroundColor[i] =
+            "black";
+        }
+      );
+
+      publicScatterHeight.update();
+      publicScatterWeight.update();
+
+      publicScatterHeight.data.datasets[1].pointBackgroundColor.forEach(
+        (el) => {
+          if (el === "red") console.log("red");
+        }
+      );
+
+      const foundTypeCombo = preparedData.labels[elements[0].index];
+      const types = foundTypeCombo.split("/");
+      const firstType = types[0];
+      const secondType = types[1];
+
+      const foundIndices = [];
+
+      fetchedPokemon.forEach((pokemon, pokeIndex) => {
+        if (secondType) {
+          if (
+            (pokemon.type_1 === firstType && pokemon.type_2 === secondType) ||
+            (pokemon.type_1 === secondType && pokemon.type_2 === firstType)
+          ) {
+            foundIndices.push(pokeIndex);
+          }
+        } else {
+          if (!pokemon.type_2) {
+            if (pokemon.type_1 === firstType || pokemon.type_2 === firstType)
+              foundIndices.push(pokeIndex);
+          }
+        }
+      });
+
+      foundIndices.forEach((foundIndex) => {
+        publicScatterHeight.data.datasets[1].pointBackgroundColor[foundIndex] =
+          "red";
+        publicScatterWeight.data.datasets[1].pointBackgroundColor[foundIndex] =
+          "red";
+      });
+
+      publicScatterHeight.update();
+      publicScatterWeight.update();
+    },
   },
 };
 
 export function preparePolarChartdata() {
-  const preparedData = { labels: [], resistences: [] };
-
   typeCombinations.forEach((typeCombi) => {
     if (typeCombi.amountRes > 6 && typeCombi.amountPokemon > 0) {
       preparedData.labels.push(typeCombi.name);

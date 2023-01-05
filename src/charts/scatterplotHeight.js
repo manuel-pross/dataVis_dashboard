@@ -2,7 +2,9 @@ import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
 import { regressionLinear } from "d3-regression";
-import { fetchedPokemon, fontSizeLabel, fontSizeTitleHeading } from "../data";
+import { fetchedPokemon } from "../data";
+
+import { fontSizeLabel, fontSizeTitleHeading } from "../chartStyles";
 
 import { calculateRegression } from "../utils";
 import { getStatRankingColor, highlightBarChart } from "./scatterplotWeight";
@@ -10,6 +12,7 @@ import { getStatRankingColor, highlightBarChart } from "./scatterplotWeight";
 export const allPokemonNames = [];
 
 const ctx = document.getElementById("scatterplotHeight");
+export let publicScatterHeight = null;
 Chart.register(zoomPlugin);
 
 const config = {
@@ -113,8 +116,8 @@ function prepareScatterData() {
         label: "Korrelation",
         data: regression,
         fill: false,
-        backgroundColor: "red",
-        borderColor: "red",
+        backgroundColor: "green",
+        borderColor: "green",
         pointRadius: 0,
       },
       {
@@ -122,11 +125,7 @@ function prepareScatterData() {
         label: "Pokémon",
         labels: allPokemonNames,
         data: heightBaseStats,
-        backgroundColor: function (ctx) {
-          const color = getStatRankingColor(ctx.raw.y);
-          return color;
-        },
-        borderColor: "transparent",
+        pointBackgroundColor: Array(allPokemonNames.length).fill("black"),
       },
     ],
   };
@@ -134,5 +133,5 @@ function prepareScatterData() {
 
 export function createScatterPlotHeight(data) {
   prepareScatterData(data);
-  new Chart(ctx, config);
+  publicScatterHeight = new Chart(ctx, config);
 }

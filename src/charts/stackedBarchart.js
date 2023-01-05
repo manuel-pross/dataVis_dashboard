@@ -1,10 +1,6 @@
 import { Chart } from "chart.js/auto";
-import {
-  fetchedPokemon,
-  fontSizeLabel,
-  fontSizeTitleHeading,
-  typesColorAmount,
-} from "../data";
+import { fetchedPokemon, typesColorAmount } from "../data";
+import { fontSizeLabel, fontSizeTitleHeading } from "../chartStyles";
 
 export const allPokemonNames = [];
 
