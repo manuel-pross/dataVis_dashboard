@@ -5,7 +5,7 @@ import { regressionLinear } from "d3-regression";
 import { fetchedPokemon } from "../data";
 
 import { calculateRegression } from "../utils";
-import { getStatRankingColor } from "./scatterplotWeight";
+import { getStatRankingColor, highlightBarChart } from "./scatterplotWeight";
 
 export const allPokemonNames = [];
 
@@ -46,6 +46,9 @@ const config = {
         max: 900,
         min: 150,
       },
+    },
+    onClick: (event, elements) => {
+      highlightBarChart(elements);
     },
   },
 };

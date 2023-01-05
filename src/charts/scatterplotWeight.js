@@ -52,57 +52,58 @@ const config = {
       },
     },
     onClick: (event, elements) => {
-      let firstType = null;
-      let secondType = null;
-
-      publicBarChart.data.datasets[0].borderColor = () => {
-        return "#808080";
-      };
-      publicBarChart.data.datasets[1].borderColor = () => {
-        return "#808080";
-      };
-
-      publicBarChart.update();
-
-      if (elements[0]) {
-        const pokemon = fetchedPokemon[elements[0].index];
-        firstType = pokemon.type_1;
-
-        if (pokemon.type_2) {
-          secondType = pokemon.type_2;
-        }
-      }
-
-      console.log("firstType", firstType);
-      console.log("secondType", secondType);
-
-      publicBarChart.data.datasets[0].borderColor = (e) => {
-        const foundFirstType = typesColorAmount.find(
-          (typeAmount, i) =>
-            typeAmount.name === firstType &&
-            typeAmount.amountFirstType === e.raw &&
-            i === e.index
-        );
-        if (foundFirstType) return "red";
-        else return "#808080";
-      };
-
-      if (secondType) {
-        publicBarChart.data.datasets[1].borderColor = (e) => {
-          const foundSecondType = typesColorAmount.find(
-            (typeAmount, i) =>
-              typeAmount.name === secondType &&
-              typeAmount.amountSecondType === e.raw &&
-              i === e.index
-          );
-          if (foundSecondType) return "red";
-          else return "#808080";
-        };
-      }
-      publicBarChart.update();
+      highlightBarChart(elements);
     },
   },
 };
+
+export function highlightBarChart(elements) {
+  let firstType = null;
+  let secondType = null;
+
+  publicBarChart.data.datasets[0].borderColor = () => {
+    return "#808080";
+  };
+  publicBarChart.data.datasets[1].borderColor = () => {
+    return "#808080";
+  };
+
+  publicBarChart.update();
+
+  if (elements[0]) {
+    const pokemon = fetchedPokemon[elements[0].index];
+    firstType = pokemon.type_1;
+
+    if (pokemon.type_2) {
+      secondType = pokemon.type_2;
+    }
+  }
+
+  publicBarChart.data.datasets[0].borderColor = (e) => {
+    const foundFirstType = typesColorAmount.find(
+      (typeAmount, i) =>
+        typeAmount.name === firstType &&
+        typeAmount.amountFirstType === e.raw &&
+        i === e.index
+    );
+    if (foundFirstType) return "red";
+    else return "#808080";
+  };
+
+  if (secondType) {
+    publicBarChart.data.datasets[1].borderColor = (e) => {
+      const foundSecondType = typesColorAmount.find(
+        (typeAmount, i) =>
+          typeAmount.name === secondType &&
+          typeAmount.amountSecondType === e.raw &&
+          i === e.index
+      );
+      if (foundSecondType) return "red";
+      else return "#808080";
+    };
+  }
+  publicBarChart.update();
+}
 
 export function getStatRankingColor(statSum) {
   if (statSum <= 251.3) return "#FF9600";
