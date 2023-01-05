@@ -9,8 +9,17 @@ body {
 }
 
 .dashboard__header {
+  display: flex;
+  align-items: center;
   background-color: #ee1515;
   height: 5vh;
+}
+
+.dashboard__header-img {
+  height: 80%;
+  max-width: 100%;
+  display: block;
+  margin: auto;
 }
 
 .dashboard__heading {
