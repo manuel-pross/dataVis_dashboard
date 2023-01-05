@@ -2,7 +2,7 @@ import { Chart } from "chart.js/auto";
 import zoomPlugin from "chartjs-plugin-zoom";
 
 import { regressionLinear } from "d3-regression";
-import { fetchedPokemon, fontSizeLabel } from "../data";
+import { fetchedPokemon, fontSizeLabel, fontSizeTitleHeading } from "../data";
 
 import { calculateRegression } from "../utils";
 import { getStatRankingColor, highlightBarChart } from "./scatterplotWeight";
@@ -17,6 +17,13 @@ const config = {
   data: null,
   options: {
     plugins: {
+      title: {
+        display: true,
+        text: "Höhe zu Basiswertsumme",
+        font: {
+          size: fontSizeTitleHeading,
+        },
+      },
       legend: {
         labels: {
           font: {

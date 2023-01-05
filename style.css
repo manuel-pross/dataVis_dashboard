@@ -22,14 +22,14 @@ body {
 
 .dashboard__diagramm-wrapper {
   display: flex;
-  height: 94vh;
+  height: 95vh;
 }
 
 .dashboard__interaction-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 40%;
+  width: 50%;
 }
 
 @media screen and (max-width: 1920px) {
@@ -82,8 +82,8 @@ body {
 .dashboard__polar-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 60%;
+  width: 50%;
+  border-left: solid 6px;
 }
 
 .dashboard__polar-chart {
