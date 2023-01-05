@@ -68,8 +68,10 @@ function prepareStackedBarData() {
         backgroundColor: (ctx) => {
           return getTypeColor(ctx.dataIndex, 1);
         },
-        borderColor: "black",
-        borderWidth: 2,
+        borderColor: () => {
+          return "#808080";
+        },
+        borderWidth: 3,
       },
       {
         label: "Zweittyp",
@@ -77,8 +79,10 @@ function prepareStackedBarData() {
         backgroundColor: (ctx) => {
           return getTypeColor(ctx.dataIndex, 0.5);
         },
-        borderColor: "black",
-        borderWidth: 2,
+        borderColor: () => {
+          return "#808080";
+        },
+        borderWidth: 3,
       },
     ],
   };
