@@ -41,15 +41,9 @@ body {
   width: 45%;
 }
 
-.dashboard__bar-wrapper {
-}
-
 .dashboard__division-line {
   border: 3px solid black;
   width: 100%;
-}
-
-.dashboard__scatter-wrapper {
 }
 
 .dashboard__polar-wrapper {
@@ -60,17 +54,16 @@ body {
   padding-left: 3rem;
 }
 
-.dashboard__polar-chart {
+@media screen and (min-width: 1920px) {
+  .dashboard__interaction-wrapper {
+    width: 40%;
+  }
 }
 
 @media screen and (min-width: 2560px) {
-  .dashboard__diagramm-wrapper {
-  }
   .dashboard__interaction-wrapper {
     justify-content: center;
-  }
-
-  .dashboard__polar-wrapper {
+    width: 45%;
   }
 }
 
