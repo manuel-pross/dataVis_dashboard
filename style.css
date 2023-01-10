@@ -51,7 +51,7 @@ body {
   align-items: center;
   width: 50%;
   border-left: solid 6px;
-  padding-left: 3rem;
+  padding-left: 5rem;
 }
 
 @media screen and (min-width: 1920px) {
