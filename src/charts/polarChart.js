@@ -94,11 +94,11 @@ const config = {
       publicScatterHeight.update();
       publicScatterWeight.update();
 
-      publicScatterHeight.data.datasets[1].pointBackgroundColor.forEach(
-        (el) => {
-          if (el === "red") console.log("red");
-        }
-      );
+      // publicScatterHeight.data.datasets[1].pointBackgroundColor.forEach(
+      //   (el) => {
+      //     if (el === "fad201") console.log("fad201");
+      //   }
+      // );
 
       const foundTypeCombo = preparedData.labels[elements[0].index];
       const types = foundTypeCombo.split("/");
@@ -125,9 +125,9 @@ const config = {
 
       foundIndices.forEach((foundIndex) => {
         publicScatterHeight.data.datasets[1].pointBackgroundColor[foundIndex] =
-          "red";
+          "#fad201";
         publicScatterWeight.data.datasets[1].pointBackgroundColor[foundIndex] =
-          "red";
+          "#fad201";
       });
 
       publicScatterHeight.update();
