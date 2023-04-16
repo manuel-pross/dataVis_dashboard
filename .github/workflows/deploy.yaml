@@ -70,7 +70,7 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        run: docker build . --file Dockerfile --tag continous_delivery
         
       - name: Docker Push
-        run: docker push ${{secrets.DOCKER_USER}}/continous_delivery
+        run: docker push continous_delivery
